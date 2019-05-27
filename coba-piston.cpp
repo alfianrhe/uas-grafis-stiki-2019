@@ -4,8 +4,8 @@
 
 float R_Z=0.0f, R_X=0.0f, R_Y=0.0f;
 float T_Z=-16.0f, T_X=0.0f, T_Y=0.0f;
-
-//ferren sedang mencoba github desktop
+float view_rotx = 20.0f, view_roty = 30.0f;
+int oldMouseX, oldMouseY;
 
 void initGL()
 {
@@ -125,6 +125,22 @@ if (height == 0) height = 1;
     glLoadIdentity();
 }
 
+void mouseControl(int button, int state, int x, int y){
+    oldMouseX = x;
+    oldMouseY = y;
+}
+
+void mouseMotion(int x, int y){
+    int getX = x;
+    int getY = y;
+    float thetaY = 360.0f*(getX - oldMouseX)/640;
+    float thetaX = 360.0f*(getY - oldMouseY)/480;
+    oldMouseX = getX;
+    oldMouseY = getY;
+    view_rotx += thetaX;
+    view_roty += thetaY;
+}
+
 void keyFunction(unsigned char key, int x, int y){
 switch(key){
 case 79: // Rotasi sumbu Z dengan tombol O
@@ -168,6 +184,8 @@ int main(int argc, char **argv)
     glutReshapeFunc(reshape);
     glutKeyboardFunc(keyFunction);
     initGL();
+    glutMouseFunc(mouseControl);
+    glutMotionFunc(mouseMotion);
     glutTimerFunc(0, timer, 0);
     glutMainLoop();
     return 0;
