@@ -4,7 +4,7 @@
 
 float R_Z=0.0f, R_X=0.0f, R_Y=0.0f;
 float T_Z=-16.0f, T_X=0.0f, T_Y=0.0f;
-float view_rotx = 20.0f, view_roty = 30.0f;
+float view_rotx = 90.0f, view_roty = 180.0f;
 int oldMouseX, oldMouseY;
 
 void initGL()
@@ -86,8 +86,8 @@ void display()
                 0,1,0);  // up
 
     glTranslatef(-T_X, T_Y, T_Z);
-    glRotatef(90.0f, 1.0f, 0.0f, 0.0f);
-    glRotatef(180.0f, 0.0f, 0.0f, 1.0f);
+    glRotatef(view_rotx, 1.0f, 0.0f, 0.0f);
+    glRotatef(view_roty, 0.0f, 0.0f, 1.0f);
 
     glRotatef(R_X, 1.0f, 0.0f, 0.0f);
     glRotatef(R_Y, 0.0f, 1.0f, 0.0f);
