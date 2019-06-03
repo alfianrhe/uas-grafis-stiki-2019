@@ -75,9 +75,10 @@ void initGL()
     glLightfv(GL_LIGHT0, GL_POSITION, position);
     glMaterialfv(GL_FRONT, GL_SPECULAR, specular);
 
-    float mambient[] ={0.2588f, 0.4588f, 0.745f, 0.55f};
-    float mdiffuse[] ={0.545f, 0.6784f, 0.9725f, 0.55f };
-    float mspecular[] ={0.727811f, 0.626959f, 0.626959f, 0.55f };
+    // float mambient[] ={0.73f, 0.76f, 0.76f, 0.55f};
+    float mambient[] ={0.294f, 0.294f, 0.294f, 1.0f };
+    float mdiffuse[] ={0.46f, 0.46f, 0.46f, 0.55f };
+    float mspecular[] ={0.662f, 0.662f, 0.662f, 0.55f };
     float mshine =76.8f;
 	glMaterialfv(GL_FRONT,GL_AMBIENT,mambient);
 	glMaterialfv(GL_FRONT,GL_DIFFUSE,mdiffuse);
@@ -87,6 +88,17 @@ void initGL()
 	glEnable(GL_LIGHT0);
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_NORMALIZE);
+}
+
+void ConnectingRodShaft()
+{
+        GLUquadric *q = gluNewQuadric();
+        glPushMatrix();
+        glRotatef(90, 0.0f, 1.0f, 0.0f);
+        glRotatef(45, 0.0f, 0.0f, 1.0f);
+        glTranslatef(0.0f, 0.0f, 0.475f);
+        gluCylinder(q, 0.2f, 0.4f, 2.25f, 4.0f, 4.0f);
+        glPopMatrix();
 }
 
 void ConnectingRod()
@@ -99,6 +111,10 @@ void ConnectingRod()
     int SLICES=120;
     int STACKS=120;
         GLUquadric *q = gluNewQuadric();
+        glPushMatrix();
+        glTranslatef(0.0f, 0.0f, 0.3f);
+        ConnectingRodShaft();
+        glPopMatrix();
         gluDisk(q, 0.4f, BODY_RADIUS, SLICES, STACKS);
         gluCylinder(q, BODY_RADIUS, BODY_RADIUS, 0.6f, SLICES, STACKS);
         gluCylinder(q, BODY_RADIUS2, BODY_RADIUS2, 0.6f, SLICES, STACKS);
