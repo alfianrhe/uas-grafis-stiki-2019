@@ -338,6 +338,8 @@ case 32: // space (reset)
         R_Z=0.0f, R_X=0.0f, R_Y=0.0f;
         T_Z=-16.0f, T_X=0.0f, T_Y=0.0f;
 
+        view_rotx = 90.0f, view_roty = 180.0f;
+
         Cx = 1, Cy = 1.10, Cz = 0.5;
         Lx = 1, Ly = 1, Lz = 0;
         Tx = 0, Ty = 1, Tz = 0;
