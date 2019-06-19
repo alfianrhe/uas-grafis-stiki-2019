@@ -287,27 +287,6 @@ case 65: // Translasi sumbu X+ dengan tombol A
 	break;
 
 
-// vectorMovement [hampir sama dengan translasi (?)]
-case 89: // huruf Y
-        vectorMovement(linear, 2.0f, -1.0f);
-    break;
-case 82: // huruf R
-        vectorMovement(linear, 2.0f, 1.0f);
-    break;
-case 71: // huruf G
-        vectorMovement(vertical, 2.0f, -1.0f);
-    break;
-case 84: // huruf T
-        vectorMovement(vertical, 2.0f, 1.0f);
-    break;
-case 72: // huruf H
-        vectorMovement(lateral, 2.0f, -1.0f);
-    break;
-case 70: // huruf F
-        vectorMovement(lateral, 2.0f, 1.0f);
-    break;
-
-
 // camera control
 case 90: // Z
         angle_vertikal += 1.5f;
