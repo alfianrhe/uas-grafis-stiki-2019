@@ -351,6 +351,53 @@ case 32: // space (reset)
         vertikal.set_values(0.0f, 1.0f, 0.0f);
     break;
 
+    //simulasi
+case 71: //G
+    //while(true){
+    //    T_X=-0.1f;
+    //}
+    R_Z = R_Z - 90.0f;
+    T_X = T_X - 0.5f;
+    T_Y = T_Y - 1.0f;
+    R_Y = R_Y - 15.0f;
+    T_X = T_X + 0.5f;
+    T_Y = T_Y + 1.0f;
+    break;
+
+case 82: //R untuk reset jika butuh
+    R_Z=0.0f;
+    R_X=0.0f;
+    R_Y=0.0f;
+    T_Z=-16.0f;
+    T_X=0.0f;
+    T_Y=0.0f;
+    view_rotx = 90.0f;
+    view_roty = 180.0f;
+    Cx = 1;
+    Cy = 1.10;
+    Cz = 0.5;
+    Lx = 1;
+    Ly = 1;
+    Lz = 0;
+    Tx = 0;
+    Ty = 1;
+    Tz = 0;
+
+    sudut_x = 0.0f;
+    sudut_y = 0.0f;
+    sudut_z = 0.0f;
+    sudut_x2 = 0.0f;
+    sudut_y2 = 0.0f;
+    sudut_z2 = 0.0f;
+
+    angle_depanBelakang = 0.0f;
+    angle_depanBelakang2 = 0.0f;
+    angle_samping = 0.0f;
+    angle_samping2 = 0.0f;
+    angle_vertikal = 0.0f;
+    angle_vertikal2 = 0.0f;
+    break;
+
 	}
 }
 
