@@ -129,6 +129,18 @@ void ConnectingRod()
 
 }
 
+void ygMuter() {
+    float BODY_RADIUS=0.5f;
+	float BODY_LENGTH= 0.5f;
+	int SLICES=30;
+	int STACKS=30;
+	GLUquadric *q = gluNewQuadric();
+	gluCylinder(q, BODY_RADIUS, BODY_RADIUS, BODY_LENGTH, SLICES, STACKS);
+	gluDisk(q, 0.0f, BODY_RADIUS, SLICES, STACKS); //lingkaran untuk tutup atas
+	glTranslatef(0.0f, 0.0f, BODY_LENGTH);
+	gluDisk(q, 0.0f, BODY_RADIUS, SLICES, STACKS); //lingkaran untuk tutup bawah
+}
+
 void Piston()
     {
     float BODY_LENGTH=2.4f;
@@ -205,6 +217,12 @@ void display()
     glTranslatef(0.3f, 0.0f, 1.6f);
     glRotatef(90, 0.0f, -1.0f, 0.0f);
     ConnectingRod();
+    glPopMatrix();
+
+    glPushMatrix();
+    glTranslatef(0.3f, 0.0f, 5.0f);
+    glRotatef(90 + sud, 0.0f, -1.0f, 0.0f);
+    ygMuter();
     glPopMatrix();
 
     glFlush();
