@@ -246,16 +246,16 @@ void display()
     glPopMatrix();
 
     glPushMatrix();
-    glTranslatef(1.5f, 0.0f, 5.5f);
+    glTranslatef(2.5f, 0.0f, 5.5f);
     glRotatef(90, 0.0f, -1.0f, 0.0f);
     glRotatef(90 + sud, 0.0f, 0.0f, 1.0f);
     ygMuter();
+    glTranslatef(-0.3f, 0.5f, 0.0f);
+    nyambunginPemutar();
     glPopMatrix();
 
     glPushMatrix();
-    glTranslatef(0.3f, 0.0f, 5.0f);
-    glRotatef(90, 0.0f, -1.0f, 0.0f);
-    nyambunginPemutar();
+
     glPopMatrix();
 
     glFlush();
