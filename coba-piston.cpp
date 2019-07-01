@@ -7,6 +7,10 @@ float R_Z=0.0f, R_X=0.0f, R_Y=0.0f;
 float T_Z=-16.0f, T_X=0.0f, T_Y=0.0f;
 float view_rotx = 90.0f, view_roty = 180.0f;
 int oldMouseX, oldMouseY;
+float sud = 0;
+float sudlagi = 1;
+
+bool berputar = false;
 
 float Cx = 1, Cy = 1.10, Cz = 0.5;
 float Lx = 1, Ly = 1, Lz = 0;
@@ -130,8 +134,20 @@ void ConnectingRod()
 }
 
 void ygMuter() {
-    float BODY_RADIUS=0.5f;
-	float BODY_LENGTH= 0.5f;
+    float BODY_RADIUS= 1.0f;
+	float BODY_LENGTH= 1.0f;
+	int SLICES=30;
+	int STACKS=30;
+	GLUquadric *q = gluNewQuadric();
+	gluCylinder(q, BODY_RADIUS, BODY_RADIUS, BODY_LENGTH, SLICES, STACKS);
+	gluDisk(q, 0.0f, BODY_RADIUS, SLICES, STACKS); //lingkaran untuk tutup atas
+	glTranslatef(0.0f, 0.0f, BODY_LENGTH);
+	gluDisk(q, 0.0f, BODY_RADIUS, SLICES, STACKS); //lingkaran untuk tutup bawah
+}
+
+void nyambunginPemutar(){
+    float BODY_RADIUS= 0.1f;
+	float BODY_LENGTH= 1.0f;
 	int SLICES=30;
 	int STACKS=30;
 	GLUquadric *q = gluNewQuadric();
@@ -205,6 +221,7 @@ void display()
     glRotatef(view_rotx, 1.0f, 0.0f, 0.0f);
     glRotatef(view_roty, 0.0f, 0.0f, 1.0f);
 
+
     glRotatef(R_X, 1.0f, 0.0f, 0.0f);
     glRotatef(R_Y, 0.0f, 1.0f, 0.0f);
     glRotatef(R_Z, 0.0f, 0.0f, 1.0f);
@@ -213,6 +230,15 @@ void display()
     Piston();
     glPopMatrix();
 
+    if(berputar){
+        sud = sud + sudlagi;
+        //if(sud > 180){
+         //   sudlagi =-1;
+        //} else if(sudlagi < -90){
+        //    sudlagi = 1;
+        //}
+    }
+
     glPushMatrix();
     glTranslatef(0.3f, 0.0f, 1.6f);
     glRotatef(90, 0.0f, -1.0f, 0.0f);
@@ -220,9 +246,16 @@ void display()
     glPopMatrix();
 
     glPushMatrix();
-    glTranslatef(0.3f, 0.0f, 5.0f);
-    glRotatef(90 + sud, 0.0f, -1.0f, 0.0f);
+    glTranslatef(1.5f, 0.0f, 5.5f);
+    glRotatef(90, 0.0f, -1.0f, 0.0f);
+    glRotatef(90 + sud, 0.0f, 0.0f, 1.0f);
     ygMuter();
+    glPopMatrix();
+
+    glPushMatrix();
+    glTranslatef(0.3f, 0.0f, 5.0f);
+    glRotatef(90, 0.0f, -1.0f, 0.0f);
+    nyambunginPemutar();
     glPopMatrix();
 
     glFlush();
@@ -348,7 +381,7 @@ case 78: // N
 
 
 case 32: // space (reset)
-        R_Z=0.0f, R_X=0.0f, R_Y=0.0f;
+      /*  R_Z=0.0f, R_X=0.0f, R_Y=0.0f;
         T_Z=-16.0f, T_X=0.0f, T_Y=0.0f;
 
         view_rotx = 90.0f, view_roty = 180.0f;
@@ -367,6 +400,8 @@ case 32: // space (reset)
         depanBelakang.set_values(0.0f, 0.0f, -1.0f);
         samping.set_values(1.0f, 0.0f, 0.0f);
         vertikal.set_values(0.0f, 1.0f, 0.0f);
+        */
+        berputar = !berputar;
     break;
 
     //simulasi
