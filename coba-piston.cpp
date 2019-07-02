@@ -235,10 +235,10 @@ void display()
         sud = sud + sudlagi;
         if(sud > 0.5){
             sudlagi =-0.1;
-            suds = 0.2f;
+            suds = 0.1f;
         } else if(sud < -0.5){
             sudlagi = 0.1;
-            suds = -0.2f;
+            suds = -0.1f;
         }
 
     }
