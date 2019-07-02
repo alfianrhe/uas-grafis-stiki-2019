@@ -419,6 +419,9 @@ case 71: //G
     break;
 
 case 82: //R untuk reset jika butuh
+    suds = 0;
+    sud = 0;
+    sudlagi = 0.1f;
     R_Z=0.0f;
     R_X=0.0f;
     R_Y=0.0f;
