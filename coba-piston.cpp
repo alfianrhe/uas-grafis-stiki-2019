@@ -10,7 +10,6 @@ int oldMouseX, oldMouseY;
 float sud = 0;
 float sudlagi = 0.1f;
 float suds = 0;
-float sudslagi = 0.1f;
 
 bool berputar = false;
 
@@ -258,21 +257,6 @@ void display()
     //glRotatef(45 + suds, 0.0f, 0.0f, 1.0f);
     ConnectingRod();
     glPopMatrix();
-
-    //glPushMatrix();
-    //glTranslatef(2.5f, 0.0f, 5.5f);
-    //glRotatef(90, 0.0f, -1.0f, 0.0f);
-    //glRotatef(90 + sud, 0.0f, 0.0f, 1.0f);
-    //ygMuter();
-    //glTranslatef(-0.3f, 0.5f, 0.0f);
-    //nyambunginPemutar();
-    //glPopMatrix();
-
-    //glPushMatrix();
-    //glRotatef(90, 0.0f, 0.0f, -1.0f);
-    //glTranslatef(-2.2f, 0.5f, 0.0f);
-    //ConnectingRod();
-    //glPopMatrix();
 
 
     glFlush();
