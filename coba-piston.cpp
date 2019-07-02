@@ -236,8 +236,10 @@ void display()
         sud = sud + sudlagi;
         if(sud > 0.5){
             sudlagi =-0.1;
+            suds = 0.5f;
         } else if(sud < -0.5){
             sudlagi = 0.1;
+            suds = -0.5;
         }
 
     }
@@ -251,7 +253,7 @@ void display()
    // }
 
     glPushMatrix();
-    glTranslatef(0.3f, 0.0f, 1.4f + sud);
+    glTranslatef(0.3f, 0.0f + suds, 1.4f + sud);
     glRotatef(90, 0.0f, -1.0f, 0.0f);
     //glRotatef(45 + suds, 0.0f, 0.0f, 1.0f);
     ConnectingRod();
