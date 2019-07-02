@@ -8,7 +8,9 @@ float T_Z=-16.0f, T_X=0.0f, T_Y=0.0f;
 float view_rotx = 90.0f, view_roty = 180.0f;
 int oldMouseX, oldMouseY;
 float sud = 0;
-float sudlagi = 1;
+float sudlagi = 0.1f;
+float suds = 0;
+float sudslagi = 0.1f;
 
 bool berputar = false;
 
@@ -232,31 +234,44 @@ void display()
 
     if(berputar){
         sud = sud + sudlagi;
-        //if(sud > 180){
-         //   sudlagi =-1;
-        //} else if(sudlagi < -90){
-        //    sudlagi = 1;
-        //}
+        if(sud > 0.5){
+            sudlagi =-0.1;
+        } else if(sud < -0.5){
+            sudlagi = 0.1;
+        }
+
     }
+    //if(berputar){
+    //    sud = suds + sudslagi;
+    //    if(suds > 90){
+    //        sudslagi =-0.1;
+    //    } else if(suds < -90){
+    //        sudslagi = 0.1;
+    //    }
+   // }
 
     glPushMatrix();
-    glTranslatef(0.3f, 0.0f, 1.6f);
+    glTranslatef(0.3f, 0.0f, 1.4f + sud);
     glRotatef(90, 0.0f, -1.0f, 0.0f);
+    //glRotatef(45 + suds, 0.0f, 0.0f, 1.0f);
     ConnectingRod();
     glPopMatrix();
 
-    glPushMatrix();
-    glTranslatef(2.5f, 0.0f, 5.5f);
-    glRotatef(90, 0.0f, -1.0f, 0.0f);
-    glRotatef(90 + sud, 0.0f, 0.0f, 1.0f);
-    ygMuter();
-    glTranslatef(-0.3f, 0.5f, 0.0f);
-    nyambunginPemutar();
-    glPopMatrix();
+    //glPushMatrix();
+    //glTranslatef(2.5f, 0.0f, 5.5f);
+    //glRotatef(90, 0.0f, -1.0f, 0.0f);
+    //glRotatef(90 + sud, 0.0f, 0.0f, 1.0f);
+    //ygMuter();
+    //glTranslatef(-0.3f, 0.5f, 0.0f);
+    //nyambunginPemutar();
+    //glPopMatrix();
 
-    glPushMatrix();
+    //glPushMatrix();
+    //glRotatef(90, 0.0f, 0.0f, -1.0f);
+    //glTranslatef(-2.2f, 0.5f, 0.0f);
+    //ConnectingRod();
+    //glPopMatrix();
 
-    glPopMatrix();
 
     glFlush();
     glutSwapBuffers();
