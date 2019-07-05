@@ -227,16 +227,12 @@ void display()
     glRotatef(R_Y, 0.0f, 1.0f, 0.0f);
     glRotatef(R_Z, 0.0f, 0.0f, 1.0f);
 
-    glPushMatrix();
-    Piston();
-    glPopMatrix();
-
     if(berputar){
         sud = sud + sudlagi;
-        if(sud > 0.5){
+        if(sud > 0.4){
             sudlagi =-0.1;
             suds = 0.1f;
-        } else if(sud < -0.5){
+        } else if(sud < -0.4){
             sudlagi = 0.1;
             suds = -0.1f;
         }
@@ -250,6 +246,11 @@ void display()
     //        sudslagi = 0.1;
     //    }
    // }
+
+    glPushMatrix();
+    glTranslatef(0.0f, 0.0f, 0.0f - sud);
+    Piston();
+    glPopMatrix();
 
     glPushMatrix();
     glTranslatef(0.3f, 0.0f + suds, 1.4f + sud);
