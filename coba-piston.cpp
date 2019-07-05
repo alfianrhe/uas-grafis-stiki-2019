@@ -3,7 +3,7 @@
 #include "stdio.h"
 #include "math.h"
 
-float R_Z=0.0f, R_X=0.0f, R_Y=0.0f;
+float R_Z=90.0f, R_X=0.0f, R_Y=0.0f;
 float T_Z=-16.0f, T_X=0.0f, T_Y=0.0f;
 float view_rotx = 90.0f, view_roty = 180.0f;
 int oldMouseX, oldMouseY;
@@ -229,11 +229,11 @@ void display()
 
     if(berputar){
         sud = sud + sudlagi;
-        if(sud > 0.4){
-            sudlagi =-0.1;
+        if(sud > 0.3){
+            sudlagi =-0.05;
             suds = 0.1f;
-        } else if(sud < -0.4){
-            sudlagi = 0.1;
+        } else if(sud < -0.3){
+            sudlagi = 0.05;
             suds = -0.1f;
         }
 
