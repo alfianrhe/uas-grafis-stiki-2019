@@ -27,10 +27,6 @@ float angle_samping2 = 0.0f;
 float angle_vertikal = 0.0f;
 float angle_vertikal2 = 0.0f;
 
-float linear[] = {0.0f, 0.0f, -1.0f}; // Deklarasi awal vektor untuk maju
-float lateral[] = {-1.0f, 0.0f, 0.0f}; // Deklarasi awal vektor untuk gerakan ke kanan
-float vertical[] = {0.0f, 1.0f, 0.0f}; // Deklarasi awal vektor untuk gerakan naik
-
 float toRadians(float angle){
     return angle * M_PI / 180;
 }
@@ -60,15 +56,15 @@ class Vector{
         z = (z * cos(toRadians(fmod(angle, 360.0f)))) + (cross_product_z * sin(toRadians(fmod(angle, 360.0f)))) + (dot_product * last_factor_rodrigues * z);
     }
 };
-Vector depanBelakang, samping, vertikal;
+Vector linear, lateral, vertikal;
 
 void initGL()
 {
     glShadeModel(GL_FLAT);
 
-    depanBelakang.set_values(0.0f, 0.0f, -1.0f);
-    samping.set_values(1.0f, 0.0f, 0.0f);
-    vertikal.set_values(0.0f, 1.0f, 0.0f);
+    linear.set_values(0.0f, 0.0f, -1.0f); // Deklarasi awal vektor untuk maju
+    lateral.set_values(1.0f, 0.0f, 0.0f); // Deklarasi awal vektor untuk gerakan ke kanan
+    vertikal.set_values(0.0f, 1.0f, 0.0f); // Deklarasi awal vektor untuk gerakan naik
 
     float ambient[] = {1.0f,1.0f,1.0f,1.0f};
     float diffuse[] = {1.0f,1.0f,1.0f,1.0f};
@@ -343,46 +339,46 @@ case 65: // Translasi sumbu X+ dengan tombol A
 // camera control
 case 90: // Z
         angle_vertikal += 1.5f;
-        samping.vectorRotation(vertikal, angle_vertikal - angle_vertikal2);
+        lateral.vectorRotation(vertikal, angle_vertikal - angle_vertikal2);
         //memutar vector sumbu z terhadap x (target, patokan)
-        depanBelakang.vectorRotation(vertikal, angle_vertikal - angle_vertikal2);
+        linear.vectorRotation(vertikal, angle_vertikal - angle_vertikal2);
         cameraRotation(vertikal, angle_vertikal - angle_vertikal2); // look at
         angle_vertikal2 = angle_vertikal;
     break;
 case 88: // X
         angle_vertikal -= 1.5f;
-        samping.vectorRotation(vertikal, angle_vertikal - angle_vertikal2);
-        depanBelakang.vectorRotation(vertikal, angle_vertikal - angle_vertikal2);
+        lateral.vectorRotation(vertikal, angle_vertikal - angle_vertikal2);
+        linear.vectorRotation(vertikal, angle_vertikal - angle_vertikal2);
         cameraRotation(vertikal, angle_vertikal - angle_vertikal2);
         angle_vertikal2 = angle_vertikal;
     break;
 case 67: // C
         angle_samping += 1.5f;
-        depanBelakang.vectorRotation(samping, angle_samping - angle_samping2);
-        cameraRotation(samping, angle_samping - angle_samping2);
+        linear.vectorRotation(lateral, angle_samping - angle_samping2);
+        cameraRotation(lateral, angle_samping - angle_samping2);
         angle_samping2 = angle_samping;
     break;
 case 86: // V
         angle_samping -= 1.5f;
-        depanBelakang.vectorRotation(samping, angle_samping - angle_samping2);
-        cameraRotation(samping, angle_samping - angle_samping2);
+        linear.vectorRotation(lateral, angle_samping - angle_samping2);
+        cameraRotation(lateral, angle_samping - angle_samping2);
         angle_samping2 = angle_samping;
     break;
 case 66: // B
         angle_depanBelakang += 1.5f;
-        vertikal.vectorRotation(depanBelakang, angle_depanBelakang - angle_depanBelakang2);
-        cameraRotation(depanBelakang, angle_depanBelakang - angle_depanBelakang2);
+        vertikal.vectorRotation(linear, angle_depanBelakang - angle_depanBelakang2);
+        cameraRotation(linear, angle_depanBelakang - angle_depanBelakang2);
         angle_depanBelakang2 = angle_depanBelakang;
     break;
 case 78: // N
         angle_depanBelakang -= 1.5f;
-        vertikal.vectorRotation(depanBelakang, angle_depanBelakang - angle_depanBelakang2);
-        cameraRotation(depanBelakang, angle_depanBelakang - angle_depanBelakang2);
+        vertikal.vectorRotation(linear, angle_depanBelakang - angle_depanBelakang2);
+        cameraRotation(linear, angle_depanBelakang - angle_depanBelakang2);
         angle_depanBelakang2 = angle_depanBelakang;
     break;
 
 
-case 32: // space (reset)
+case 32: // space (simulasi)
       /*  R_Z=0.0f, R_X=0.0f, R_Y=0.0f;
         T_Z=-16.0f, T_X=0.0f, T_Y=0.0f;
 
@@ -407,23 +403,12 @@ case 32: // space (reset)
     break;
 
     //simulasi
-case 71: //G
-    //while(true){
-    //    T_X=-0.1f;
-    //}
-    R_Z = R_Z - 90.0f;
-    T_X = T_X - 0.5f;
-    T_Y = T_Y - 1.0f;
-    R_Y = R_Y - 15.0f;
-    T_X = T_X + 0.5f;
-    T_Y = T_Y + 1.0f;
-    break;
 
 case 82: //R untuk reset jika butuh
     suds = 0;
     sud = 0;
     sudlagi = 0.1f;
-    R_Z=0.0f;
+    R_Z=90.0f;
     R_X=0.0f;
     R_Y=0.0f;
     T_Z=-16.0f;
